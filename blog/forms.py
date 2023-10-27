@@ -4,7 +4,7 @@ from django import forms
 from django.core.files.base import File
 from django.db.models.base import Model
 from django.forms.utils import ErrorList
-from .models import Post,Comment
+from .models import Post
 from django.contrib.auth.models import User
 
 class PostCreateForm(forms.ModelForm):
@@ -30,25 +30,7 @@ class PostCreateForm(forms.ModelForm):
         if commit:
             post.save()
         return post
-class CommentForm(forms.ModelForm):
-    name = forms.CharField()
+class CommentForm(forms.Form):
+    name = forms.CharField(max_length=35)
     email = forms.EmailField()
-    body = forms.CharField(widget=forms.Textarea)
-    post_id = forms.IntegerField(required=True)
-    class Meta:
-        model = Comment
-        fields = ['name','email','body','post_id']
-
-    def __init__(self, *args, **kwargs):
-        self.post_id = kwargs.pop("post_id")
-        super(PostCreateForm, self).__init__(*args,**kwargs)
-        self.fields['post_id'].initial = self.post_id
-        
-    def save(self, commit: bool = ...) -> Any:
-        comment = super(CommentForm,self).save(commit=False)
-        comment.title = self.cleaned_data['body']
-        comment.content = self.cleaned_data['content']
-        comment.author_id = self.cleaned_data['author_id']
-        if commit:
-            comment.save()
-        return comment
+    content = forms.CharField()

@@ -69,6 +69,7 @@
                         <h2 class="post-view__card-title">Comments (4)</h2>
                         <div class="post-view__card-body comments-view">
                             <ol class="comments-list comments-list--level--0 comments-view__list">
+                                {% for item in items %}
                                 <li class="comments-list__item">
                                     <div class="comment">
                                         <div class="comment__body">
@@ -77,117 +78,22 @@
                                             </div>
                                             <div class="comment__meta">
                                                 <div class="comment__author">
-                                                    Jessica Moore
+                                                {{item.comment.name}}
                                                 </div>
                                                 <div class="comment__date">
-                                                    November 30, 2018
+                                                {{item.comment.created_at}}
                                                 </div>
                                             </div>
                                             <div class="comment__reply">
                                                 <button type="button" class="btn btn-xs btn-light">Reply</button>
                                             </div>
                                             <div class="comment__content typography">
-                                                Aliquam ullamcorper elementum sagittis. Etiam lacus lacus, mollis in mattis in, vehicula eu nulla. Nulla nec tellus pellentesque.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="comments-list__children">
-                                        <ol class="comments-list comments-list--level--1">
-                                            <li class="comments-list__item">
-                                                <div class="comment">
-                                                    <div class="comment__body">
-                                                        <div class="comment__avatar">
-                                                            <img src="images/avatars/avatar-2-38x38.jpg" alt="">
-                                                        </div>
-                                                        <div class="comment__meta">
-                                                            <div class="comment__author">
-                                                                Adam Taylor
-                                                            </div>
-                                                            <div class="comment__date">
-                                                                December 4, 2018
-                                                            </div>
-                                                        </div>
-                                                        <div class="comment__reply">
-                                                            <button type="button" class="btn btn-xs btn-light">Reply</button>
-                                                        </div>
-                                                        <div class="comment__content typography">
-                                                            Ut vitae finibus nisl, suscipit porttitor urna. Integer efficitur efficitur velit non pulvinar. Aliquam blandit volutpat arcu vel tristique. Integer commodo ligula id augue tincidunt faucibus.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="comments-list__item">
-                                                <div class="comment">
-                                                    <div class="comment__body">
-                                                        <div class="comment__avatar">
-                                                            <img src="images/avatars/avatar-3-38x38.jpg" alt="">
-                                                        </div>
-                                                        <div class="comment__meta">
-                                                            <div class="comment__author">
-                                                                Helena Garcia
-                                                            </div>
-                                                            <div class="comment__date">
-                                                                December 12, 2018
-                                                            </div>
-                                                        </div>
-                                                        <div class="comment__reply">
-                                                            <button type="button" class="btn btn-xs btn-light">Reply</button>
-                                                        </div>
-                                                        <div class="comment__content typography">
-                                                            Suspendisse dignissim luctus metus vitae aliquam. Vestibulum sem odio, ullamcorper a imperdiet a, tincidunt sed lacus. Sed magna felis, consequat a erat ut, rutrum finibus odio.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ol>
-                                    </div>
-                                </li>
-                                <li class="comments-list__item">
-                                    <div class="comment">
-                                        <div class="comment__body">
-                                            <div class="comment__avatar">
-                                                <img src="images/avatars/avatar-4-38x38.jpg" alt="">
-                                            </div>
-                                            <div class="comment__meta">
-                                                <div class="comment__author">
-                                                    Ryan Ford
-                                                </div>
-                                                <div class="comment__date">
-                                                    December 5, 2018
-                                                </div>
-                                            </div>
-                                            <div class="comment__reply">
-                                                <button type="button" class="btn btn-xs btn-light">Reply</button>
-                                            </div>
-                                            <div class="comment__content typography">
-                                                Nullam at varius sapien. Sed sit amet condimentum elit.
+                                                {{item.comment.content}}
                                             </div>
                                         </div>
                                     </div>
                                 </li>
-                                <li class="comments-list__item">
-                                    <div class="comment">
-                                        <div class="comment__body">
-                                            <div class="comment__avatar">
-                                                <img src="images/avatars/avatar-3-38x38.jpg" alt="">
-                                            </div>
-                                            <div class="comment__meta">
-                                                <div class="comment__author">
-                                                    Helena Garcia
-                                                </div>
-                                                <div class="comment__date">
-                                                    December 12, 2018
-                                                </div>
-                                            </div>
-                                            <div class="comment__reply">
-                                                <button type="button" class="btn btn-xs btn-light">Reply</button>
-                                            </div>
-                                            <div class="comment__content typography">
-                                                Suspendisse dignissim luctus metus vitae aliquam. Vestibulum sem odio, ullamcorper a imperdiet a, tincidunt sed lacus. Sed magna felis, consequat a erat ut, rutrum finibus odio.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                {%endfor%}
                             </ol>
                             <div class="comments-view__pagination">
                                 <ul class="pagination">
@@ -227,24 +133,21 @@ C-0.1,9.8-0.1,10.4,0.3,10.7z" />
                     </div>
                     <div class="post-view__card">
                         <h2 class="post-view__card-title">Write A Comment</h2>
-                        <form class="post-view__card-body">
+                        <form class="post-view__card-body" method ="post">
+                            {% csrf_token %}
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="comment-first-name">First Name</label>
-                                    <input type="text" class="form-control" id="comment-first-name" placeholder="First Name">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="comment-last-name">Last Name</label>
-                                    <input type="text" class="form-control" id="comment-last-name" placeholder="Last Name">
+                                    {{form.name}}
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="comment-email">Email Address</label>
-                                    <input type="email" class="form-control" id="comment-email" placeholder="Email Address">
+                                    {{form.email}}
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="comment-content">Comment</label>
-                                <textarea class="form-control" id="comment-content" rows="6"></textarea>
+                                {{form.content}}
                             </div>
                             <div class="form-group mb-0">
                                 <button type="submit" class="btn btn-primary mt-md-4 mt-2">Post Comment</button>
