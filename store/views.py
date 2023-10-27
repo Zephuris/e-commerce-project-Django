@@ -1,5 +1,11 @@
 from django.shortcuts import render
 from .models import CartItem, Order, OrderItem, Products,Cart,Collection
+from core.models import Comment,CommentedItem
+from django.contrib.contenttypes.models import ContentType
+from core.forms import CommentForm
+from django.contrib import messages
+from django.core.paginator import Paginator
+
 # Create your views here.
 def MainStoreView(request):
     collection_qs = Collection.objects.all()
@@ -14,17 +20,31 @@ def ProductListView(request):
 def productDetailView(request,id):
     product_qs = Products.objects.get(id = id)
     cart,created = Cart.objects.get_or_create(customer = request.user)
+    contenttype_obj = ContentType.objects.get_for_model(Products)
+    comment_qs = CommentedItem.objects.filter(content_type = contenttype_obj,object_id = id)
     if request.method == 'POST':
-        try:
-            cartitem = CartItem.objects.get(product_id = id,cart_id = cart.id)
-            cartitem.quantity += 2
-            cartitem.save()
-        except:
-            cartitem = CartItem.objects.create(product_id = id,cart_id = cart.id,quantity = 2)
-
+        data = request.POST
+        action = data.get("button")
+        if action == 'cart':
+            try:
+                cartitem = CartItem.objects.get(product_id = id,cart_id = cart.id)
+                cartitem.quantity += 2
+                cartitem.save()
+            except:
+                cartitem = CartItem.objects.create(product_id = id,cart_id = cart.id,quantity = 2)
+        elif action == 'comment':
+            form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = Comment.objects.create(name = form.cleaned_data['name'] ,email= form.cleaned_data['email'],content = form.cleaned_data['content'])
+            comment_item = CommentedItem.objects.create(comment = comment,content_type = contenttype_obj,object_id = id)
+            messages.success(request, 'Your comment is submited successfully.')
+        messages.error(request, "Unsuccessful submition.")
+    form = CommentForm()
     return render(request = request, template_name="product-full.html",context={'product':product_qs,
                                                                                 'user':request.user,
-                                                                                'cartItem':cart.items.all()})
+                                                                                'cartItem':cart.items.all(),
+                                                                                'items':comment_qs,
+                                                                                'form':form})
 def CartView(request):
     cart,created = Cart.objects.get_or_create(customer = request.user)
     cartItems = CartItem.objects.filter(cart = cart)

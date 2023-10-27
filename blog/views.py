@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
-from .forms import PostCreateForm,CommentForm
+from .forms import PostCreateForm
+from core.forms import CommentForm
 from django.contrib import messages
 from .models import Post
 from core.models import Comment,CommentedItem

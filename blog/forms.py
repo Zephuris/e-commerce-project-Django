@@ -30,7 +30,3 @@ class PostCreateForm(forms.ModelForm):
         if commit:
             post.save()
         return post
-class CommentForm(forms.Form):
-    name = forms.CharField(max_length=35)
-    email = forms.EmailField()
-    content = forms.CharField()
