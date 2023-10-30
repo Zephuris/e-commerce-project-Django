@@ -5,8 +5,8 @@ from uuid import uuid4
 
 class Collection (models.Model):
     title = models.CharField(max_length=255)
-    featured_products = models.ForeignKey(
-        'Products', on_delete=models.SET_NULL, null=True, related_name='+', blank=True)
+    featured_product = models.ForeignKey(
+        'Products', on_delete=models.SET_NULL, null=True, related_name='ProductItems', blank=True)
     def __str__(self) -> str:
         return self.title
     

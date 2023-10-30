@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class ="site__body">
+    <div class="block-space block-space--layout--after-header"></div>
+    <div class="block">
+        <div class="container ">
+            <div class="document">
+                <div class="document__content card">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label >Title</label>
+                            {{ form.title }}
+                        </div>
+                        <div class="form-group">
+                            <label >description</label>
+                            {{ form.description }}
+                        </div>
+                        <div class="form-group">
+                            <label >price</label>
+                            {{form.unit_price}}
+                        </div>
+                        <div class="form-group">
+                            <label >slug</label>
+                            {{form.slug}}
+                        </div>
+                        <div class="form-group">
+                            <label >inventory</label>
+                            {{form.inventory}}
+                        </div>
+                        <div class="form-group">
+                            <label >collection</label>
+                            {{form.collection}}
+                        </div>
+                        <div class="form-group mb-0">
+                            <button type="submit" class="btn btn-primary mt-3">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>    
+        </div>    
+    </div>    
+</div>
+{% endblock %}
