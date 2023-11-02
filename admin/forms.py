@@ -38,3 +38,10 @@ class ProductForm(forms.ModelForm):
             'inventory':forms.NumberInput(attrs={'class':'form-control'}),
             'collection':forms.Select(attrs={'class':'form-control'}),
         }
+class CollectionForm(forms.ModelForm):
+    class Meta:
+        model =Collection
+        fields = ['title','image']
+        widgets = {
+            'title':forms.TextInput(attrs={'class':'form-control','placeholder':'Title'})
+        }
