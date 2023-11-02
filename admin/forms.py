@@ -24,11 +24,12 @@ class ProductCreationForm(forms.Form):
     
     collection = forms.ModelMultipleChoiceField(queryset = Collection.objects.all(),
                                                 widget = forms.Select(attrs={'class':'form-control'}))
+    image = forms.FileField()
 
-class EditProductForm(forms.ModelForm):
+class ProductForm(forms.ModelForm):
     class Meta:
         model = Products
-        fields = ['title','description','unit_price','slug','inventory','collection']
+        fields = ['title','description','unit_price','slug','inventory','collection','image']
         widgets = {
             'title':forms.TextInput(attrs={'class':'form-control','placeholder':'Title'}),
             'description':forms.Textarea(attrs={'class':'form-control form-control-lg','placeholder':'Description'}),

@@ -194,7 +194,7 @@
                                             <div class="departments__item-menu">
                                                 <div class="megamenu departments__megamenu departments__megamenu--size--xl">
                                                     <div class="megamenu__image">
-                                                        <img src="images/departments/departments-2.jpg" alt="">
+                                                        <img src="/Icestore/templates/static/images/departments/departments-2.jpg" alt="">
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-1of5">
@@ -307,7 +307,7 @@
                                             <div class="departments__item-menu">
                                                 <div class="megamenu departments__megamenu departments__megamenu--size--lg">
                                                     <div class="megamenu__image">
-                                                        <img src="images/departments/departments-1.jpg" alt="">
+                                                        <img src="/Icestore/templates/static/images/departments/departments-1.jpg" alt="">
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-3">
@@ -410,7 +410,7 @@
                                             <div class="departments__item-menu">
                                                 <div class="megamenu departments__megamenu departments__megamenu--size--md">
                                                     <div class="megamenu__image">
-                                                        <img src="images/departments/departments-3.jpg" alt="">
+                                                        <img src="/Icestore/templates/static/mages/departments/departments-3.jpg" alt="">
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-4">
@@ -498,7 +498,7 @@
                                             <div class="departments__item-menu">
                                                 <div class="megamenu departments__megamenu departments__megamenu--size--nl">
                                                     <div class="megamenu__image">
-                                                        <img src="images/departments/departments-4.jpg" alt="">
+                                                        <img src="/Icestore/templates/static/images/departments/departments-4.jpg" alt="">
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-6">
@@ -1224,8 +1224,8 @@ c0,2.8,2.2,5,5,5c2.8,0,5-2.2,5-5C13,5.2,10.8,3,8,3z" />
                         </a>
                     </div>
                     <div class="indicator indicator--trigger--click">
-                        {% if request.user is None %}
-                        <a href="/user/register" class="indicator__button">
+                        {% if request.user.is_anonymous %}
+                        <a href="/user/login" class="indicator__button">
                             <span class="indicator__icon">
                                 <svg width="32" height="32">
                                     <path d="M16,18C9.4,18,4,23.4,4,30H2c0-6.2,4-11.5,9.6-13.3C9.4,15.3,8,12.8,8,10c0-4.4,3.6-8,8-8s8,3.6,8,8c0,2.8-1.5,5.3-3.6,6.7
@@ -1257,7 +1257,7 @@ c0,2.8,2.2,5,5,5c2.8,0,5-2.2,5-5C13,5.2,10.8,3,8,3z" />
                             <span class="indicator__value">{{ user_context.username }}</span>
                         </a>
                         {% else %}
-                        <a href="/user/dashboard/" class="indicator__button">
+                        <a href="/user/dashboard" class="indicator__button">
                             <span class="indicator__icon">
                                 <svg width="32" height="32">
                                     <path d="M16,18C9.4,18,4,23.4,4,30H2c0-6.2,4-11.5,9.6-13.3C9.4,15.3,8,12.8,8,10c0-4.4,3.6-8,8-8s8,3.6,8,8c0,2.8-1.5,5.3-3.6,6.7
@@ -1292,7 +1292,7 @@ c0,2.8,2.2,5,5,5c2.8,0,5-2.2,5-5C13,5.2,10.8,3,8,3z" />
                                     <li class="dropcart__item">
                                         <div class="dropcart__item-image image image--type--product">
                                             <a class="image__body" href="product-full.html">
-                                                <img class="image__tag" src="images/products/product-4-70x70.jpg" alt="">
+                                                <img class="image__tag" src="/Icestore/templates/static/images/products/product-4-70x70.jpg" alt="">
                                             </a>
                                         </div>
                                         <div class="dropcart__item-info">
@@ -1319,7 +1319,7 @@ c0,2.8,2.2,5,5,5c2.8,0,5-2.2,5-5C13,5.2,10.8,3,8,3z" />
                                     <li class="dropcart__item">
                                         <div class="dropcart__item-image image image--type--product">
                                             <a class="image__body" href="product-full.html">
-                                                <img class="image__tag" src="images/products/product-2-70x70.jpg" alt="">
+                                                <img class="image__tag" src="/Icestore/templates/static/images/products/product-2-70x70.jpg" alt="">
                                             </a>
                                         </div>
                                         <div class="dropcart__item-info">
@@ -1342,7 +1342,7 @@ c0,2.8,2.2,5,5,5c2.8,0,5-2.2,5-5C13,5.2,10.8,3,8,3z" />
                                     <li class="dropcart__item">
                                         <div class="dropcart__item-image image image--type--product">
                                             <a class="image__body" href="product-full.html">
-                                                <img class="image__tag" src="images/products/product-5-70x70.jpg" alt="">
+                                                <img class="image__tag" src="/Icestore/templates/static/images/products/product-5-70x70.jpg" alt="">
                                             </a>
                                         </div>
                                         <div class="dropcart__item-info">
@@ -1504,7 +1504,7 @@ c0,2.8,2.2,5,5,5c2.8,0,5-2.2,5-5C13,5.2,10.8,3,8,3z" />
                                 <!-- copyright / end -->
                             </div>
                             <div class="site-footer__payments">
-                                <img src="images/payments.png" alt="">
+                                <img src="/Icestore/templates/static/images/payments.png" alt="">
                             </div>
                         </div>
                     </div>
@@ -1533,7 +1533,7 @@ c0,2.8,2.2,5,5,5c2.8,0,5-2.2,5-5C13,5.2,10.8,3,8,3z" />
                         <div class="mobile-menu__setting" data-mobile-menu-item>
                             <button class="mobile-menu__setting-button" title="Language" data-mobile-menu-trigger>
                                 <span class="mobile-menu__setting-icon">
-                                    <img src="images/languages/language-5.png" alt="">
+                                    <img src="/Icestore/templates/static/images/languages/language-5.png" alt="">
                                 </span>
                                 <span class="mobile-menu__setting-title">Italian</span>
                                 <span class="mobile-menu__setting-arrow"><svg width="6px" height="9px">
@@ -1556,7 +1556,7 @@ c0,2.8,2.2,5,5,5c2.8,0,5-2.2,5-5C13,5.2,10.8,3,8,3z" />
                                             <li data-mobile-menu-item>
                                                 <button type="button" class="" data-mobile-menu-trigger>
                                                     <div class="mobile-menu__links-image">
-                                                        <img src="images/languages/language-1.png" alt="">
+                                                        <img src="/Icestore/templates/static/images/languages/language-1.png" alt="">
                                                     </div>
                                                     English
                                                 </button>
@@ -1564,7 +1564,7 @@ c0,2.8,2.2,5,5,5c2.8,0,5-2.2,5-5C13,5.2,10.8,3,8,3z" />
                                             <li data-mobile-menu-item>
                                                 <button type="button" class="" data-mobile-menu-trigger>
                                                     <div class="mobile-menu__links-image">
-                                                        <img src="images/languages/language-2.png" alt="">
+                                                        <img src="/Icestore/templates/static/images/languages/language-2.png" alt="">
                                                     </div>
                                                     French
                                                 </button>
@@ -1572,7 +1572,7 @@ c0,2.8,2.2,5,5,5c2.8,0,5-2.2,5-5C13,5.2,10.8,3,8,3z" />
                                             <li data-mobile-menu-item>
                                                 <button type="button" class="" data-mobile-menu-trigger>
                                                     <div class="mobile-menu__links-image">
-                                                        <img src="images/languages/language-3.png" alt="">
+                                                        <img src="/Icestore/templates/static/images/languages/language-3.png" alt="">
                                                     </div>
                                                     German
                                                 </button>
@@ -1580,7 +1580,7 @@ c0,2.8,2.2,5,5,5c2.8,0,5-2.2,5-5C13,5.2,10.8,3,8,3z" />
                                             <li data-mobile-menu-item>
                                                 <button type="button" class="" data-mobile-menu-trigger>
                                                     <div class="mobile-menu__links-image">
-                                                        <img src="images/languages/language-4.png" alt="">
+                                                        <img src="/Icestore/templates/static/images/languages/language-4.png" alt="">
                                                     </div>
                                                     Russian
                                                 </button>
@@ -1588,7 +1588,7 @@ c0,2.8,2.2,5,5,5c2.8,0,5-2.2,5-5C13,5.2,10.8,3,8,3z" />
                                             <li data-mobile-menu-item>
                                                 <button type="button" class="" data-mobile-menu-trigger>
                                                     <div class="mobile-menu__links-image">
-                                                        <img src="images/languages/language-5.png" alt="">
+                                                        <img src="/Icestore/templates/static/images/languages/language-5.png" alt="">
                                                     </div>
                                                     Italian
                                                 </button>

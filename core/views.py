@@ -1,11 +1,13 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, authenticate,logout,update_session_auth_hash
+from django.contrib.auth.forms import AuthenticationForm,PasswordChangeForm
 from django.contrib.auth.models import User
 from .forms import NewUserForm,UpdateProfileForm
 from store.models import Order
 from store.views import MainStoreView
+
+
 
 # Create your views here.
 def register_view(request):
@@ -57,3 +59,18 @@ def ProfileView(request):
         profile_form = UpdateProfileForm()
     return render(request, "account-profile.html",{'form':profile_form})
 
+def logoutView(request):
+    logout(request)
+    messages.info(request,'Succussfully Logged out!')
+    return redirect(MainStoreView)
+
+def passwordEditView(request):
+    if request == 'POST' :
+        form = PasswordChangeForm(request.user,request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request,user)
+            return redirect('passwordEditView')
+        messages.error(request,'Invalid Password!')
+    form = PasswordChangeForm(request.user)
+    return render(request,'account-password.html',context={'form':form})

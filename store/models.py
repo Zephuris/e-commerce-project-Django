@@ -7,6 +7,7 @@ class Collection (models.Model):
     title = models.CharField(max_length=255)
     featured_product = models.ForeignKey(
         'Products', on_delete=models.SET_NULL, null=True, related_name='ProductItems', blank=True)
+    image = models.ImageField(upload_to='store/collection')
     def __str__(self) -> str:
         return self.title
     
@@ -21,9 +22,10 @@ class Products (models.Model):
     inventory = models.IntegerField(validators=[MinValueValidator(0)])
     last_update = models.DateTimeField(auto_now=True)
     collection = models.ForeignKey(Collection, on_delete=models.PROTECT, related_name='products')
-
+    image = models.ImageField(upload_to='product/',null=True, blank=True)
     def __str__(self) -> str:
         return self.title
+
 # class Customer (models.Model):
 #     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,unique=True)
 #     phoneNumber = models.PositiveBigIntegerField()
