@@ -1,1 +1,1 @@
-web: gunicorn Icestore.wsgi --log-file--
+web: gunicorn 'Icestore.wsgi'
