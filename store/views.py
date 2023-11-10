@@ -20,26 +20,26 @@ def ProductListView(request):
 def productDetailView(request,id):
     product_qs = Products.objects.get(id = id)
     contenttype_obj = ContentType.objects.get_for_model(Products)
-    comment_qs = CommentedItem.objects.filter(content_type = contenttype_obj,object_id = id)
-    if request.user.is_authenticated:    
-        cart,created = Cart.objects.get_or_create(customer = request.user)
-        if request.method == 'POST':
-            data = request.POST
-            action = data.get("button")
-            if action == 'cart':
-                try:
-                    cartitem = CartItem.objects.get(product_id = id,cart_id = cart.id)
-                    cartitem.quantity += 2
-                    cartitem.save()
-                except:
-                    cartitem = CartItem.objects.create(product_id = id,cart_id = cart.id,quantity = 2)
-            elif action == 'comment':
-                form = CommentForm(request.POST)
+    comment_qs = CommentedItem.objects.filter(content_type = contenttype_obj,object_id = id) 
+    cart = Cart.objects.get(customer = request.user)
+    if request.method == 'POST':
+        data = request.POST
+        action = data.get("button")
+        if action == 'cart':
+            print("fffffffffffff\nffffffffffffff")
+            try:
+                cartitem = CartItem.objects.get(product_id = id,cart_id = cart.id)
+                cartitem.quantity += 2
+                cartitem.save()
+            except:
+                cartitem = CartItem.objects.create(product_id = id,cart_id = cart.id,quantity = 2)
+        elif action == 'comment':
+            form = CommentForm(request.POST)
             if form.is_valid():
                 comment = Comment.objects.create(name = form.cleaned_data['name'] ,email= form.cleaned_data['email'],content = form.cleaned_data['content'])
                 comment_item = CommentedItem.objects.create(comment = comment,content_type = contenttype_obj,object_id = id)
                 messages.success(request, 'Your comment is submited successfully.')
-            messages.error(request, "Unsuccessful submition.")
+        messages.error(request, "Unsuccessful submition.")
     form = CommentForm()
     return render(request = request, template_name="product-full.html",context={'product':product_qs,
                                                                                 'items':comment_qs,
